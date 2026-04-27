@@ -1713,90 +1713,106 @@
         }
 
         /* ========== MOBILE MENU ========== */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 400px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 100%);
-            z-index: 1500;
-            padding: 100px 35px 35px;
-            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: -10px 0 40px rgba(0,0,0,0.3);
-        }
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 380px;
+    height: 100vh;
 
-        .mobile-menu.active {
-            right: 0;
-        }
+    background: linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 100%);
+    z-index: 2000;
 
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-            z-index: 1400;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
+    padding: 100px 30px 30px;
 
-        .mobile-menu-overlay.active {
-            display: block;
-            opacity: 1;
-        }
+    display: flex;
+    flex-direction: column;
 
-        .mobile-menu-links {
-            list-style: none;
-        }
+    transition: right 0.4s ease-in-out;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.4);
+}
 
-        .mobile-menu-links li {
-            margin-bottom: 8px;
-        }
+.mobile-menu.active {
+    right: 0;
+}
 
-        .mobile-menu-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 600;
-            display: block;
-            padding: 15px 20px;
-            border-radius: 14px;
-            transition: all 0.3s;
-        }
+/* Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    z-index: 1900;
 
-        .mobile-menu-links a:hover {
-            background: rgba(255,107,0,0.2);
-            color: var(--orange);
-            transform: translateX(10px);
-        }
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+}
 
-        .mobile-menu-close {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 28px;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
 
-        .mobile-menu-close:hover {
-            background: rgba(255,255,255,0.1);
-            transform: rotate(90deg);
-        }
+/* Links */
+.mobile-menu-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu-links li {
+    margin-bottom: 10px;
+}
+
+.mobile-menu-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+
+    display: block;
+    padding: 14px 18px;
+    border-radius: 12px;
+
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-links a:hover {
+    background: rgba(255,107,0,0.15);
+    color: var(--orange);
+    transform: translateX(8px);
+}
+
+/* Close button */
+.mobile-menu-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: white;
+
+    font-size: 22px;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+    background: var(--orange);
+    transform: rotate(90deg);
+}
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
@@ -1881,23 +1897,26 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
-            <i class="fas fa-times"></i>
-        </button>
-        <ul class="mobile-menu-links">
-            <li><a href="#home" onclick="toggleMobileMenu()">Home</a></li>
-            <li><a href="#flights" onclick="toggleMobileMenu()">Flight Status</a></li>
-            <li><a href="#services" onclick="toggleMobileMenu()">Services</a></li>
-            <li><a href="#about" onclick="toggleMobileMenu()">About</a></li>
-            <li><a href="#terminals" onclick="toggleMobileMenu()">Terminals</a></li>
-            <li><a href="#transport" onclick="toggleMobileMenu()">Parking & Transport</a></li>
-            <li><a href="#news" onclick="toggleMobileMenu()">News</a></li>
-            <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
-            <li><a href="#" onclick="toggleMobileMenu(); openAuthModal()">Book a Flight</a></li>
-        </ul>
-    </div>
+  <!-- MOBILE OVERLAY -->
+<div class="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+        <i class="fas fa-times"></i>
+    </button>
+
+    <ul class="mobile-menu-links">
+        <li><a href="#home" onclick="toggleMobileMenu()">Home</a></li>
+        <li><a href="#flights" onclick="toggleMobileMenu()">Flight Status</a></li>
+        <li><a href="#services" onclick="toggleMobileMenu()">Services</a></li>
+        <li><a href="#about" onclick="toggleMobileMenu()">About</a></li>
+        <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
+        <li><a href="#" onclick="toggleMobileMenu(); openAuthModal()">Book a Flight</a></li>
+    </ul>
+
+</div>
 
     <!-- Hero Section -->
    <section class="hero" id="home">
@@ -2633,11 +2652,12 @@
         });
 
         // Mobile menu toggle
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('active');
-            document.querySelector('.mobile-menu-overlay').classList.toggle('active');
-            document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('active') ? 'hidden' : '';
-        }
+  <script>
+function toggleMobileMenu() {
+    document.getElementById("mobileMenu").classList.toggle("active");
+    document.querySelector(".mobile-menu-overlay").classList.toggle("active");
+}
+</script>
 
         // Flight tabs
         function switchTab(tab) {
